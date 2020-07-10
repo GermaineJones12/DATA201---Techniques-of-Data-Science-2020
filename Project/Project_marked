@@ -1,0 +1,56 @@
+1. Load all three files into Python and take a look at them. Ensure that you understand what is recorded in each. Compare the geographic locations of data collected, and the years. Create new dataframes that contain only the data for matched years and locations where appropriate. Deal appropriately with NaN datapoints. (3 marks)
+
+Use \texttt{read\_csv}, \texttt{to\_datetime} and \texttt{drop\_na}. Compare sites and stations, get ['Auckland' 'Masterton' 'Wellington' 'Hokitika' 'Nelson' 'Dunedin'] as matching places, drop years prior to 1986.
+1 for reading and dropping NaN, 1 for getting dates, 1 for sites. 
+
+Your mark: 3
+
+2. Make plots of the various timeseries and check if you can see the expected temporal pattern in the ENSO index. (3 marks)
+
+Just plot things on same figure. Monthly and annually for preference (with averaging to get second). And say that you can see the temporal variation (which you can!).
+1 for plotting anything, 1 for some brains or good presentation, 1 for commenting on the pattern or otherwise.
+
+Your mark: 2 (no comment)
+
+3. Test whether or not there is a correlation between the rainfall and temperature and the index. (4 marks)
+
+Easiest is to use \texttt{corr}. And then interpret the results. Which are: no correlation between rainfall and temp, weak between rainfall and ENSO (0.2 ish), moderate between temp and ENSO (0.6ish).
+1 for the command, 2 for reporting numbers, 1 for recognising strength of correlation varies. 
+
+Your mark: 4
+
+4. Test whether or not this correlation is stronger or weaker in different parts of the country. (5 marks)
+
+Repeat with the different locations. They are all over the place, but largely stronger in the north island.  The rainfall gets up to 0.4 in some places, and is negative in others, suggesting randomness. 
+1 for using the right places.  2 for commenting that they vary.  2 for  some thoughts about why, or that rainfall is random or similar.
+
+Your mark: 4 (missing some thoughts about geographical locations)
+
+5. Using the Auckland data, predict the strength of the ENSO index for each year using the rainfall and temperature data. You will need to:
+    \begin{itemize}
+    \item Choose the appropriate data and normalise it (2)
+    \item Split it into training and testing sets (2)
+    \item Choose an appropriate algorithm (4)
+    \item Perform the training (4)
+    \item Report appropriate metrics(3)
+    \end{itemize}
+(15 marks)
+
+I've added marks to list above. First part is obvious, hopefully easy 4 marks. For algs, trying linear regression is good. Random forest, kNN, whatever. More marks for trying 2 or more algs. Easy marks for making it work. Only metric is RMSE really. A decent result is about 0.25 RMSE for test data.  
+
+Your mark: 12 (data splitting should be done first, should try more algorithms with hyperparameter tuning)
+
+6. Using just the ENSO index data, see if you can predict the strength of the ENSO index for date $t+1$ using the index values for dates $t-1, t-2, t-3$. The easiest way to do this is to assemble the data into an array with 3 columns. The first few rows would be (where $I_{m-y}t$ is the index value for date month-year)
+Compare the model with two others.
+Explain why you get the results you do. (15 marks)
+
+3 for reshaping, 6 for getting coding right for algorithms, 2 for code for comparing the 3 time periods, 4 for explanation.
+
+Your mark: 12 (similar to Q5)
+
+7. Test whether or not the ENSO is getting stronger or weaker over time. (5 marks)
+Not really. Best way in fit a linear regressor to the first few years and the last few years and compare. Another is to correlate dataframe index (month since start) with ENSO value. Either show at best very weak positive correlation. (3) for doing something intelligent, (2) for extras.
+
+Your mark: 5
+
+Total: 42
